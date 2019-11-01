@@ -13,17 +13,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(TempController.class)
-class TempControllerTest {
+@WebMvcTest(TempRestController.class)
+public class TempRestControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void mockMvcTest() throws Exception {
-        mockMvc.perform(get("/").contentType(MediaType.APPLICATION_JSON))
+    public void mockMvcRestTest() throws Exception {
+        // 테스트 깨지는 이유는 찾아봐야할듯.. ㅠㅠ
+        mockMvc.perform(get("/list")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
         ;
     }
+
 }
